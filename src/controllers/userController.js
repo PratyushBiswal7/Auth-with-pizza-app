@@ -4,8 +4,6 @@ const userRepository = require("../repositories/userRepository");
 async function createUser(req, res) {
   console.log("Create user Controller called");
   console.log(req.body);
-  // TODO: Implement user creation logic
-
   const userService = new UserService(new userRepository());
   console.log(userService);
   try {
