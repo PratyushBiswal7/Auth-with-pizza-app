@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const bcrypt = require("bcrypt");
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -55,6 +55,16 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", async function () {
+  console.log("Executing pre save hook");
+  console.log(this);
+  const hashedPassword = await bcrypt.hash(this.password, 10);
+  this.password = hashedPassword;
+  console.log(this);
+  console.log("Execting pre save hook");
+});
+
 const User = mongoose.model("PizzaAppUser", userSchema);
 
 module.exports = User;
