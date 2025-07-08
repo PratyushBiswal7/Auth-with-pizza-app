@@ -1,5 +1,5 @@
 const express = require("express");
-
+const cookieParser = require("cookie-parser");
 const ServerConfig = require("./config/serverConfig");
 const connectDB = require("./config/dbConfig");
 const userRouter = require("./routes/userRoutes");
@@ -10,13 +10,14 @@ const authRouter = require("./routes/authRouter");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cookieParser());
 app.use("/users", userRouter);
 app.use("/carts", cartRouter);
 app.use("/auth", authRouter);
 
 app.post("/", (req, res) => {
   console.log(req.body);
+  console.log(req.cookies);
   res.json({ message: "Pong" });
 });
 
