@@ -4,6 +4,7 @@ const ServerConfig = require("./config/serverConfig");
 const connectDB = require("./config/dbConfig");
 const userRouter = require("./routes/userRoutes");
 const cartRouter = require("./routes/cartRouter");
+const authRouter = require("./routes/authRouter");
 // const User = require("./schemas/userSchema");
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", userRouter);
 app.use("/carts", cartRouter);
+app.use("/auth", authRouter);
 
 app.post("/", (req, res) => {
   console.log(req.body);
