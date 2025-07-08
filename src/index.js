@@ -18,7 +18,7 @@ app.use("/auth", authRouter);
 app.post("/", (req, res) => {
   console.log(req.body);
   console.log(req.cookies);
-  res.json({ message: "Pong" });
+  res.json({ message: "Pong!" });
 });
 
 app.listen(ServerConfig.PORT, async () => {
