@@ -57,12 +57,9 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", async function () {
-  console.log("Executing pre save hook");
-  console.log(this);
   const hashedPassword = await bcrypt.hash(this.password, 10);
   this.password = hashedPassword;
   console.log(this);
-  console.log("Execting pre save hook");
 });
 
 const User = mongoose.model("PizzaAppUser", userSchema);

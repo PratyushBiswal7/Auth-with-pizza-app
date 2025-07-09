@@ -5,6 +5,7 @@ const connectDB = require("./config/dbConfig");
 const userRouter = require("./routes/userRoutes");
 const cartRouter = require("./routes/cartRouter");
 const authRouter = require("./routes/authRouter");
+const { isLoggedIn } = require("./Validators/authValidator");
 // const User = require("./schemas/userSchema");
 
 const app = express();
@@ -15,7 +16,7 @@ app.use("/users", userRouter);
 app.use("/carts", cartRouter);
 app.use("/auth", authRouter);
 
-app.post("/", (req, res) => {
+app.get("/", isLoggedIn, (req, res) => {
   console.log(req.body);
   console.log(req.cookies);
   res.json({ message: "Pong!" });
