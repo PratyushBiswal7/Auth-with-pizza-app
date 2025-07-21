@@ -1,5 +1,6 @@
 const { cloudinary } = require("../config/coludinaryConfig");
 const ProductRepositories = require("../repositories/productRepositories");
+const fs = require("fs/promises");
 
 async function createProduct(productDetails) {
   const imagePath = productDetails.imagePath;
@@ -7,6 +8,7 @@ async function createProduct(productDetails) {
     try {
       const cloudinaryResponce = await cloudinary.uploader.upload(imagePath);
       var productImage = cloudinaryResponce.secure_url;
+      await fs.unlink(imagePath);
     } catch (error) {
       console.log(error);
       throw { reason: "Can not uplaod the image", statusCode: 500 };

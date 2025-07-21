@@ -10,6 +10,11 @@ async function addProduct(req, res) {
       catagory: req.body.catagory, // if catagory undefined veg will stored, because of default value
       inStock: req.body.inStock, // if inStock is undefined true will stored, because of defalut value
     });
+    return res.status(201).json({
+      success: true,
+      message: "Successfully created a product",
+      data: product,
+    });
   } catch (error) {
     console.log(error);
     return res.status(error.statusCode).json({

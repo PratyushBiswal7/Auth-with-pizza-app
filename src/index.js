@@ -10,6 +10,7 @@ const uploader = require("./middlewares/multerMiddleware");
 const { cloudinary } = require("./config/coludinaryConfig");
 const fs = require("fs/promises");
 const { unlink } = require("fs");
+const productRouter = require("./routes/productRout");
 // const User = require("./schemas/userSchema");
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use("/users", userRouter);
 app.use("/carts", cartRouter);
 app.use("/auth", authRouter);
+app.use("/product", productRouter);
 
 app.get("/", isLoggedIn, (req, res) => {
   console.log(req.body);
