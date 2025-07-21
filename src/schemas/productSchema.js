@@ -27,6 +27,7 @@ const ProductSchema = new mongoose.Schema(
     inStock: {
       type: Boolean,
       required: [true, "In stock status is required"],
+      default: true,
     },
   },
   {

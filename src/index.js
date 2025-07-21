@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use("/users", userRouter);
 app.use("/carts", cartRouter);
 app.use("/auth", authRouter);
-app.use("/product", productRouter);
+app.use("/products", productRouter);
 
 app.get("/", isLoggedIn, (req, res) => {
   console.log(req.body);
