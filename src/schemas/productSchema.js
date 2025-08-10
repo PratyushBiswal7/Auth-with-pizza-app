@@ -29,6 +29,9 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "In stock status is required"],
       default: true,
     },
+    cloudinaryPublicId: {
+      type: String, // Needed to delete image from Cloudinary
+    },
   },
   {
     timestamps: true,
