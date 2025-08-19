@@ -52,6 +52,11 @@ const userSchema = new Schema(
       minLength: [6, "Password must be at least 6 characters long"],
       maxLength: [20, "Password cannot exceed 20 characters"],
     },
+    role: {
+      type: String,
+      enum: ["USER", "ADMIN"],
+      default: "USER",
+    },
   },
   { timestamps: true }
 );
