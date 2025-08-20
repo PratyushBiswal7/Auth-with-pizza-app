@@ -21,10 +21,17 @@ async function loginUser(userDetails) {
   if (!isPasswordValidated) {
     throw { message: "InValid Password!, Please try again!", statusCode: 401 };
   }
+
+  const userRole = user.role ? user.role : "USER";
+
   //generate token and return
-  const token = jwt.sign({ email: user.email, id: user.id }, JWT_SECRET, {
-    expiresIn: JWT_EXPIRY,
-  });
+  const token = jwt.sign(
+    { email: user.email, id: user.id, role: userRole },
+    JWT_SECRET,
+    {
+      expiresIn: JWT_EXPIRY,
+    }
+  );
 
   return token;
 }

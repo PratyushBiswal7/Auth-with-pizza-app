@@ -26,9 +26,27 @@ async function isLoggedIn(req, res, next) {
   req.user = {
     email: decode.email,
     id: decode.id,
+    role: decode.role,
   };
 
   next();
 }
 
-module.exports = { isLoggedIn };
+function isAdmin(req, res, next) {
+  const loggedInUser = req.user;
+  if (loggedInUser.role === "ADMIN") {
+    next();
+  } else {
+    return res.status(401).json({
+      success: false,
+      data: {},
+      message: "You are not authorize for this action",
+      error: {
+        statusCode: 401,
+        reason: "Unathorized user for this action",
+      },
+    });
+  }
+}
+
+module.exports = { isLoggedIn, isAdmin };
