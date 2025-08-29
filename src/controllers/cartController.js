@@ -3,7 +3,7 @@ const AppError = require("../utils/AppError");
 
 async function getCartByUser(req, res) {
   try {
-    const cart = await getCart(req.body.userId);
+    const cart = await getCart(req.user.id);
     return res.status(200).json({
       success: true,
       message: "Successfully fetched the cart",
