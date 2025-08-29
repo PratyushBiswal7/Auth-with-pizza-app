@@ -1,3 +1,4 @@
+const { createCart } = require("../repositories/cartRepository");
 const { findUser, createUser } = require("../repositories/userRepository");
 
 async function registerUser(userDetails) {
@@ -20,6 +21,7 @@ async function registerUser(userDetails) {
     password: userDetails.password,
     firstName: userDetails.firstName,
     lastName: userDetails.lastName,
+    // role: userDetails.role,
   });
 
   if (!newUser) {
@@ -29,6 +31,7 @@ async function registerUser(userDetails) {
     };
   }
 
+  await createCart(newUser._id);
   return newUser;
 }
 

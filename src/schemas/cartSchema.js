@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { applyTimestamps } = require("./userSchema");
 
 const cartSchema = new mongoose.Schema(
   {
@@ -7,6 +6,7 @@ const cartSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       require: true,
       ref: "PizzaAppUser",
+      unique: true,
     },
     items: [
       {
