@@ -4,7 +4,6 @@ const InternalServerError = require("../utils/internalServerError");
 async function createCart(userId) {
   try {
     const newCart = await Cart.create({ user: userId });
-    console.log("created", newCart);
     return newCart;
   } catch (error) {
     if (error.name === "ValidationError") {
@@ -21,7 +20,7 @@ async function createCart(userId) {
 
 async function getCartByUserId(userId) {
   try {
-    const cart = await Cart.findOne({ user: userId });
+    const cart = await Cart.findOne({ user: userId }).populate("items.product");
     return cart;
   } catch (error) {
     console.log(error);

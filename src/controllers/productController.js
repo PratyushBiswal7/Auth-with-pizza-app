@@ -4,7 +4,8 @@ const {
   deleteProductById,
   getAllProducts,
 } = require("../services/productService");
-const AppError = require("../utils/appError");
+const AppError = require("../utils/AppError");
+
 
 async function addProduct(req, res) {
   try {
